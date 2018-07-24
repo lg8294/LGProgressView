@@ -13,6 +13,7 @@
 		CB9567912101820300B28BBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB9567902101820300B28BBB /* Assets.xcassets */; };
 		CB9567942101820300B28BBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB9567922101820300B28BBB /* LaunchScreen.storyboard */; };
 		CB9567972101820300B28BBB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9567962101820300B28BBB /* main.m */; };
+		CB9567A02101823C00B28BBB /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB95679F2101823C00B28BBB /* ProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		CB9567932101820300B28BBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB9567952101820300B28BBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB9567962101820300B28BBB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CB95679E2101823C00B28BBB /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
+		CB95679F2101823C00B28BBB /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +45,7 @@
 		CB95677B2101820100B28BBB = {
 			isa = PBXGroup;
 			children = (
+				CB95679D2101822900B28BBB /* ProgressView */,
 				CB9567862101820100B28BBB /* LGProgressView */,
 				CB9567852101820100B28BBB /* Products */,
 			);
@@ -69,6 +73,15 @@
 				CB9567962101820300B28BBB /* main.m */,
 			);
 			path = LGProgressView;
+			sourceTree = "<group>";
+		};
+		CB95679D2101822900B28BBB /* ProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				CB95679E2101823C00B28BBB /* ProgressView.h */,
+				CB95679F2101823C00B28BBB /* ProgressView.m */,
+			);
+			path = ProgressView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB95678C2101820100B28BBB /* ViewController.m in Sources */,
+				CB9567A02101823C00B28BBB /* ProgressView.m in Sources */,
 				CB9567972101820300B28BBB /* main.m in Sources */,
 				CB9567892101820100B28BBB /* AppDelegate.m in Sources */,
 			);
