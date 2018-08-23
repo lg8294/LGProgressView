@@ -52,7 +52,7 @@
     [self.progressView showMessage:@"updating..."];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        self.progressView.complete += 1024*1024;
+        self.progressView.complete += 1024*1024*(arc4random()%10);
         if (self.progressView.complete == self.progressView.total) {
             [timer invalidate];
         }

@@ -8,11 +8,11 @@
 
 #import "ProgressView.h"
 
-#define PADDING 30
-#define UNIT_SIZE CGSizeMake(2, 10)
-#define UNIT_COLOR [UIColor blackColor]
+#define PADDING 40
+#define UNIT_SIZE CGSizeMake(3, 12)
+#define UNIT_COLOR [UIColor colorWithRed:78/255.0 green:136/255.0 blue:185/255.0 alpha:1]
 #define UNIT_COLOR_COMPLETE [UIColor whiteColor]
-#define UNIT_COUNT 61
+#define UNIT_COUNT 81
 #define TextColor [UIColor whiteColor]
 
 @interface ProgressView ()
@@ -38,6 +38,15 @@
 - (instancetype)init
 {
     self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
     if (self) {
         [self setup];
     }
@@ -77,8 +86,8 @@
     
     CGFloat r = MAX(size.width, size.height)/2 - PADDING;
     
-    NSLog(@"%@", NSStringFromCGPoint(selfCenter));
-    NSLog(@"%f", r);
+//    NSLog(@"%@", NSStringFromCGPoint(selfCenter));
+//    NSLog(@"%f", r);
     double total = M_PI*2*5/6;
     double unit = 0;
     if (self.unitLayers.count>1) {
@@ -147,6 +156,7 @@
     CALayer *layer = [[CALayer alloc] init];
     [layer setBounds:CGRectMake(0, 0, UNIT_SIZE.width, UNIT_SIZE.height)];
     [layer setBackgroundColor:self.progressUnitDefaultColor.CGColor];
+    layer.anchorPoint = CGPointMake(0.5, 0);
     return layer;
 }
 
@@ -159,9 +169,13 @@
 }
 
 - (void)setComplete:(NSInteger)complete {
-    _complete = complete;
+    if (complete > _total) {
+        _complete = _total;
+    } else {
+        _complete = complete;
+    }
     
-    NSString *msg = [NSString stringWithFormat:@"%ldMB", complete/1024/1024];
+    NSString *msg = [NSString stringWithFormat:@"%ldMB", _complete/1024/1024];
     [self.completeLabel setText:msg];
     [self.completeLabel sizeToFit];
     [self update];
@@ -209,11 +223,10 @@
         return;
     }
     [self.unitLayers enumerateObjectsUsingBlock:^(CALayer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (idx+1 == stopIndex) {
+        if (idx < stopIndex) {
             [obj setBackgroundColor:UNIT_COLOR_COMPLETE.CGColor];
-            [obj setBounds:CGRectMake(0, 0, UNIT_SIZE.width, UNIT_SIZE.height*1.5)];
-        } else if(idx+1 < stopIndex) {
-            [obj setBounds:CGRectMake(0, 0, UNIT_SIZE.width, UNIT_SIZE.height)];
+            CGFloat zoom = idx+1 == stopIndex ? 1.5 : 1.0;
+            [obj setBounds:CGRectMake(0, 0, UNIT_SIZE.width, UNIT_SIZE.height*zoom)];
         } else {
             [obj setBackgroundColor:self.progressUnitDefaultColor.CGColor];
             [obj setTransform:CATransform3DMakeScale(0, 0, 0)];
